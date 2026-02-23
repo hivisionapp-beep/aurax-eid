@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AURAX | Sovereign Engineering Greeting - Eid Experience</title>
+  <style>
+    :root{
+      --navy:#050B18;
+      --navy2:#07142B;
+      --blue:#2AA8FF;
+      --blue2:#6BD3FF;
+      --silver:#C9D2E3;
+
+      --txt:#EAF1FF;
+      --muted: rgba(234,241,255,.75);
+
+      --cardA: rgba(255,255,255,.06);
+      --cardB: rgba(255,255,255,.10);
+      --stroke: rgba(255,255,255,.14);
+      --shadow: 0 20px 70px rgba(0,0,0,.55);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--txt);
+      background:
+        radial-gradient(1200px 800px at 78% 10%, rgba(42,168,255,.22), transparent 60%),
+        radial-gradient(900px 700px at 15% 35%, rgba(201,210,227,.10), transparent 55%),
+        linear-gradient(160deg, var(--navy), var(--navy2));
+      min-height:100vh;
+      overflow:hidden;
+    }
+
+    .grid{
+      position:fixed; inset:0; pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 52px 52px;
+      opacity:.10;
+      mask-image: radial-gradient(circle at 50% 25%, rgba(0,0,0,1), rgba(0,0,0,.05) 60%, rgba(0,0,0,0) 80%);
+    }
+
+    .stars{
+      position:fixed; inset:0; pointer-events:none; opacity:.35;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 120px 180px, #fff, transparent),
+        radial-gradient(1px 1px at 300px 90px, #fff, transparent),
+        radial-gradient(1px 1px at 520px 240px, #fff, transparent),
+        radial-gradient(1px 1px at 760px 140px, #fff, transparent),
+        radial-gradient(1px 1px at 980px 260px, #fff, transparent);
+      background-size: 1000px 300px;
+      animation: drift 16s linear infinite;
+    }
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-150px)}}
+
+    .wrap{
+      position:relative;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+    }
+
+    .card{
+      width:min(800px, 100%);
+      background: linear-gradient(180deg, var(--cardB), var(--cardA));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      backdrop-filter: blur(10px);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(650px 300px at 80% 0%, rgba(42,168,255,.22), transparent 60%),
+        radial-gradient(520px 260px at 18% 10%, rgba(201,210,227,.12), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .brand{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+      padding-bottom:14px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      z-index:1;
+    }
+    .logoBox{
+      width:44px; height:44px;
+      border-radius:14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+    .brand h3{
+      margin:0;
+      font-size:1.05rem;
+      letter-spacing:.4px;
+    }
+    .brand .tag{
+      margin-top:3px;
+      font-size:.92rem;
+      color: rgba(234,241,255,.70);
+      letter-spacing:.3px;
+    }
+    .tag strong{
+      color: rgba(234,241,255,.92);
+      font-weight:700;
+    }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      margin-bottom:12px;
+      color: rgba(234,241,255,.78);
+      font-size:.95rem;
+      position:relative;
+      z-index:1;
+    }
+
+    h1,h2{margin:0 0 10px 0; line-height:1.25; position:relative; z-index:1;}
+    p{margin:0 0 14px 0; color: var(--muted); font-size: 1.05rem; position:relative; z-index:1;}
+
+    .row{display:grid; grid-template-columns: 1fr; gap:14px; position:relative; z-index:1;}
+    .mini{
+      padding:14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .mini b{color: var(--txt)}
+    .hint{font-size:.95rem; color: rgba(234,241,255,.68)}
+
+    input{
+      width:100%;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--txt);
+      outline:none;
+    }
+    input::placeholder{color: rgba(234,241,255,.55)}
+
+    .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px; position:relative; z-index:1;}
+    button{
+      appearance:none; border:0; cursor:pointer;
+      padding:12px 16px;
+      border-radius: 14px;
+      color: #041022;
+      font-weight:800;
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      box-shadow: 0 14px 30px rgba(42,168,255,.22);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    button:hover{transform: translateY(-1px); filter: brightness(1.03)}
+    .ghost{
+      background: rgba(255,255,255,.07);
+      color: var(--txt);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow:none;
+      font-weight:650;
+    }
+
+    .kbd{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      font-size:.9rem;
+      color: var(--txt);
+    }
+
+    .screen{display:none}
+    .screen.active{display:block}
+
+    #fireworks{
+      position:fixed; inset:0; width:100%; height:100%;
+      z-index:0; display:none;
+    }
+    .eid{
+      text-align:center;
+      position:relative;
+      z-index:1;
+    }
+    .eid h1{
+      font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+      margin-bottom: 10px;
+    }
+    .eid .sub{
+      font-size: clamp(1rem, 2.1vw, 1.25rem);
+      color: rgba(234,241,255,.88);
+      margin-bottom: 18px;
+    }
+    .glow{
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(42,168,255,.10);
+      border: 1px solid rgba(42,168,255,.28);
+      box-shadow: 0 0 48px rgba(42,168,255,.20);
+    }
+
+    .footer{
+      margin-top: 14px;
+      font-size:.92rem;
+      color: rgba(234,241,255,.60);
+      position:relative; z-index:1;
+    }
+
+    .silverLine{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(201,210,227,.55), transparent);
+      margin: 12px 0 0;
+      opacity:.65;
+      position:relative; z-index:1;
+    }
+
+    .signature{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(234,241,255,.75);
+      font-size:.95rem;
+    }
+    .dot{
+      width:8px; height:8px;
+      border-radius:999px;
+      background: linear-gradient(90deg, var(--blue), var(--silver));
+      box-shadow: 0 0 18px rgba(42,168,255,.25);
+    }
+
+    #moonBtn{
+      font-size:2.1rem;
+      padding:14px 18px;
+      border-radius:18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid"></div>
+  <div class="stars"></div>
+  <canvas id="fireworks"></canvas>
+
+  <div class="wrap">
+    <!-- شاشة 1 -->
+    <div class="card screen active" id="screen1">
+      <div class="brand">
+        <div class="logoBox" title="ضع شعار AURAX هنا">
+          <!-- استبدل هذا الـ SVG بشعاركم الحقيقي -->
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-label="AURAX">
+            <path d="M32 6L56 54H8L32 6Z" stroke="rgba(201,210,227,.95)" stroke-width="3.5"/>
+            <path d="M20 40H44" stroke="rgba(42,168,255,.95)" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>AURAX Intelligent Systems</h3>
+          <div class="tag"><strong>Sovereign Engineering Greeting</strong></div>
+        </div>
+      </div>
+
+      <div class="badge">🎮 تجربة تفاعلية رسمية • رابط واحد • مرحلتان</div>
+      <h1>مرحبًا بك 👋</h1>
+      <p>أدخل اسمك (اختياري) ثم اضغط <b>ابدأ</b>. عند إكمال المهمة تظهر تهنئة العيد بأسلوب AURAX مع الألعاب النارية.</p>
+
+      <div class="row">
+        <div class="mini">
+          <b>اسمك (اختياري)</b>
+          <div style="height:10px"></div>
+          <input id="nameInput" placeholder="مثال: محمد / فاطمة" maxlength="24"/>
+          <div style="height:10px"></div>
+          <div class="hint">بدء سريع بـ <span class="kbd">Enter</span></div>
+        </div>
+
+        <div class="mini">
+          <b>التوقيع</b>
+          <p style="margin-top:8px; margin-bottom:0">
+            <span class="signature"><span class="dot"></span> ALSAMH A. AlShameri</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button id="startBtn">ابدأ التجربة ➜</button>
+        <button class="ghost" id="copyLinkBtn">انسخ الرابط</button>
+      </div>
+
+      <div class="silverLine"></div>
+      <div class="footer">© AURAX Intelligent Systems — Sovereign Engineering Greeting • ALSAMH A. AlShameri</div>
+    </div>
+
+    <!-- شاشة 2 -->
+    <div class="card screen" id="screen2">
+      <div class="brand">
+        <div class="logoBox">
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M32 6L56 54H8L32 6Z" stroke="rgba(201,210,227,.95)" stroke-width="3.5"/>
+            <path d="M20 40H44" stroke="rgba(42,168,255,.95)" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>AURAX Intelligent Systems</h3>
+          <div class="tag"><strong>Sovereign Engineering Greeting</strong> • Level 2</div>
+        </div>
+      </div>
+
+      <div class="badge">🧩 المرحلة الثانية • خطوة أخيرة</div>
+      <h2 id="missionTitle">المهمة:</h2>
+      <p>اضغط على القمر 🌙 <b>ثلاث مرات</b> لإطلاق التهنئة الرسمية 🎁</p>
+
+      <div style="display:flex; justify-content:center; align-items:center; margin:16px 0 6px; position:relative; z-index:1">
+        <button class="ghost" id="moonBtn">🌙</button>
+      </div>
+
+      <p class="hint" id="progressHint">التقدم: 0 / 3</p>
+
+      <div class="btns">
+        <button class="ghost" id="backBtn">⬅ رجوع</button>
+        <button id="skipBtn">تخطي إلى التهنئة 🎉</button>
+      </div>
+
+      <div class="footer">عند التهنئة ستبدأ الألعاب النارية تلقائيًا، ويمكنك إطلاق المزيد بالنقر على الشاشة.</div>
+    </div>
+
+    <!-- شاشة 3 -->
+    <div class="card screen eid" id="screen3">
+      <div class="brand" style="justify-content:center">
+        <div class="logoBox">
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M32 6L56 54H8L32 6Z" stroke="rgba(201,210,227,.95)" stroke-width="3.5"/>
+            <path d="M20 40H44" stroke="rgba(42,168,255,.95)" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="text-align:right">
+          <h3>AURAX Intelligent Systems</h3>
+          <div class="tag"><strong>Sovereign Engineering Greeting</strong></div>
+        </div>
+      </div>
+
+      <div class="badge">🎉 Sovereign Engineering Greeting</div>
+      <h1 class="glow" id="eidTitle">عيد فطر مبارك ✨</h1>
+      <div class="sub" id="eidSub">تقبل الله طاعتكم، وجعل أيامكم أفراحًا وسعادة 🤍</div>
+
+      <!-- توقيع رسمي في شاشة العيد -->
+      <div style="margin:10px 0 2px; position:relative; z-index:1">
+        <span class="signature"><span class="dot"></span> ALSAMH A. AlShameri</span>
+      </div>
+
+      <div class="btns" style="justify-content:center">
+        <button id="replayBtn">إعادة التجربة 🔄</button>
+        <button class="ghost" id="shareBtn">نسخ رسالة التهنئة 📩</button>
+      </div>
+
+      <div class="footer">🎆 اضغط في أي مكان على الشاشة لإطلاق ألعاب نارية إضافية.</div>
+    </div>
+  </div>
+
+  <script>
+    const screens = {
+      s1: document.getElementById("screen1"),
+      s2: document.getElementById("screen2"),
+      s3: document.getElementById("screen3"),
+    };
+
+    const nameInput = document.getElementById("nameInput");
+    const startBtn = document.getElementById("startBtn");
+    const backBtn = document.getElementById("backBtn");
+    const skipBtn = document.getElementById("skipBtn");
+    const moonBtn = document.getElementById("moonBtn");
+    const progressHint = document.getElementById("progressHint");
+    const eidTitle = document.getElementById("eidTitle");
+    const eidSub = document.getElementById("eidSub");
+    const replayBtn = document.getElementById("replayBtn");
+    const shareBtn = document.getElementById("shareBtn");
+    const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+    let clicks = 0;
+    let playerName = "";
+
+    function show(screen){
+      Object.values(screens).forEach(el => el.classList.remove("active"));
+      screen.classList.add("active");
+      if(screen === screens.s1) location.hash = "#welcome";
+      if(screen === screens.s2) location.hash = "#level2";
+      if(screen === screens.s3) location.hash = "#eid";
+    }
+
+    function getName(){
+      const v = (nameInput.value || "").trim();
+      return v.slice(0,24);
+    }
+
+    function setMissionText(){
+      const missionTitle = document.getElementById("missionTitle");
+      missionTitle.textContent = playerName ? `المهمة يا ${playerName}:` : "المهمة:";
+    }
+
+    function startGame(){
+      playerName = getName();
+      clicks = 0;
+      progressHint.textContent = "التقدم: 0 / 3";
+      show(screens.s2);
+      setMissionText();
+    }
+
+    function finishToEid(){
+      if(playerName){
+        eidTitle.textContent = `عيد فطر مبارك يا ${playerName} ✨`;
+        eidSub.textContent = "تقبل الله طاعتكم، وجعل أيامكم أمانًا وازدهارًا وسعادة 🤍";
+      }else{
+        eidTitle.textContent = "عيد فطر مبارك ✨";
+        eidSub.textContent = "تقبل الله طاعتكم، وجعل أيامكم أفراحًا وسعادة 🤍";
+      }
+      show(screens.s3);
+      startFireworks();
+      burstAt(innerWidth/2, innerHeight/2, 2);
+    }
+
+    startBtn.addEventListener("click", startGame);
+    backBtn.addEventListener("click", () => show(screens.s1));
+    skipBtn.addEventListener("click", finishToEid);
+
+    moonBtn.addEventListener("click", () => {
+      clicks++;
+      progressHint.textContent = `التقدم: ${Math.min(clicks,3)} / 3`;
+      burstAt(
+        (innerWidth*0.5) + (Math.random()*80-40),
+        (innerHeight*0.55) + (Math.random()*80-40),
+        1
+      );
+      if(clicks >= 3) finishToEid();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" && screens.s1.classList.contains("active")) startGame();
+    });
+
+    copyLinkBtn.addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(location.href.replace(/#.*$/,'') + "#welcome");
+        copyLinkBtn.textContent = "تم النسخ ✅";
+        setTimeout(()=> copyLinkBtn.textContent = "انسخ الرابط", 1200);
+      }catch{
+        alert("تعذر النسخ تلقائيًا. انسخ الرابط يدويًا من شريط العنوان.");
+      }
+    });
+
+    replayBtn.addEventListener("click", () => {
+      stopFireworks();
+      show(screens.s1);
+    });
+
+    shareBtn.addEventListener("click", async () => {
+      const base = location.href.replace(/#.*$/,'');
+      const msg = playerName
+        ? `AURAX | Sovereign Engineering Greeting\nALSAMH A. AlShameri\nعيد فطر مبارك يا ${playerName} ✨\nتقبل الله طاعتكم، وجعل أيامكم أمانًا وازدهارًا وسعادة 🤍\n${base}`
+        : `AURAX | Sovereign Engineering Greeting\nALSAMH A. AlShameri\nعيد فطر مبارك ✨\nتقبل الله طاعتكم، وجعل أيامكم أفراحًا وسعادة 🤍\n${base}`;
+      try{
+        await navigator.clipboard.writeText(msg);
+        shareBtn.textContent = "تم النسخ ✅";
+        setTimeout(()=> shareBtn.textContent = "نسخ رسالة التهنئة 📩", 1400);
+      }catch{
+        alert(msg);
+      }
+    });
+
+    function syncFromHash(){
+      const h = (location.hash || "#welcome").toLowerCase();
+      if(h.includes("level2")) { show(screens.s2); setMissionText(); return; }
+      if(h.includes("eid")) { show(screens.s3); startFireworks(); return; }
+      show(screens.s1);
+    }
+    window.addEventListener("hashchange", syncFromHash);
+    syncFromHash();
+
+    // --- Fireworks (AURAX palette) ---
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let raf = null;
+    let running = false;
+
+    function resize(){
+      canvas.width = innerWidth * devicePixelRatio;
+      canvas.height = innerHeight * devicePixelRatio;
+      canvas.style.width = innerWidth + "px";
+      canvas.style.height = innerHeight + "px";
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    function rand(min,max){ return Math.random()*(max-min)+min; }
+
+    const palette = [
+      {h: 200, s: 95, l: 65},
+      {h: 190, s: 90, l: 70},
+      {h: 210, s: 85, l: 60},
+      {h: 220, s: 35, l: 78},
+    ];
+
+    function pickColor(){
+      const c = palette[Math.floor(Math.random()*palette.length)];
+      return { h: c.h + rand(-6,6), s: c.s + rand(-8,8), l: c.l + rand(-6,6) };
+    }
+
+    function makeBurst(x,y, power=1){
+      const count = Math.floor(rand(55, 95) * power);
+      for(let i=0;i<count;i++){
+        const a = rand(0, Math.PI*2);
+        const s = rand(1.6, 4.9) * (power*1.12);
+        const col = pickColor();
+        particles.push({
+          x, y,
+          vx: Math.cos(a)*s,
+          vy: Math.sin(a)*s,
+          life: rand(50, 88),
+          ttl: 0,
+          size: rand(1.2, 2.6),
+          h: col.h, s: col.s, l: col.l,
+          gravity: rand(0.03, 0.06),
+          drag: rand(0.985, 0.992)
+        });
+      }
+    }
+
+    function burstAt(x,y, power=1){
+      if(!running) return;
+      makeBurst(x,y, power);
+    }
+
+    function animate(){
+      ctx.fillStyle = "rgba(0,0,0,0.18)";
+      ctx.fillRect(0,0, innerWidth, innerHeight);
+
+      particles = particles.filter(p => p.ttl < p.life);
+      for(const p of particles){
+        p.ttl++;
+        p.vx *= p.drag;
+        p.vy = p.vy * p.drag + p.gravity;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        const alpha = 1 - (p.ttl / p.life);
+        ctx.beginPath();
+        ctx.fillStyle = `hsla(${p.h}, ${p.s}%, ${p.l}%, ${alpha})`;
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      if(Math.random() < 0.045){
+        makeBurst(rand(innerWidth*0.18, innerWidth*0.82), rand(innerHeight*0.16, innerHeight*0.42), 1);
+      }
+
+      raf = requestAnimationFrame(animate);
+    }
+
+    function startFireworks(){
+      canvas.style.display = "block";
+      running = true;
+      if(!raf) animate();
+    }
+    function stopFireworks(){
+      running = false;
+      canvas.style.display = "none";
+      if(raf){
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+      particles = [];
+      ctx.clearRect(0,0, innerWidth, innerHeight);
+    }
+
+    document.addEventListener("pointerdown", (e) => {
+      if(!screens.s3.classList.contains("active")) return;
+      burstAt(e.clientX, e.clientY, 1.2);
+    });
+  </script>
+</body>
+</html>
